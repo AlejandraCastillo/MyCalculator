@@ -1,0 +1,46 @@
+# Android Studio / IntelliJ IDEA
+.gradle/
+.idea/
+*.iml
+/local.properties
+
+# Build outputs
+/build/
+/out/
+/captures/
+*.apk
+*.ap_
+*.aab
+
+# Kotlin build outputs
+/build/tmp/
+/build/kotlin/
+
+# Gradle
+.gradle
+/gradle-app.setting
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Navigation
+.navigation
+
+# Local configuration files
+/local.properties
+
+# Kotlin metadata
+*.kotlin_module
+
+# Jetpack Compose build outputs
+/build/generated/
+
+# Other files
+output.json
+*.log
+*.hprof
+
+# OS generated files
+.DS_Store
+Thumbs.db

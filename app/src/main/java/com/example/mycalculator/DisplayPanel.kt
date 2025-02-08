@@ -25,8 +25,8 @@ fun DisplayPanel(
             horizontalAlignment = Alignment.End,
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
-            SecondaryDisplay("2")
-            MainDisplay("1")
+            SecondaryDisplay(secondaryText)
+            MainDisplay(mainText)
         }
     }
 }

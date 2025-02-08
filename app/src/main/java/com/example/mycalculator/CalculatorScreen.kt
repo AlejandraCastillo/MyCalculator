@@ -24,6 +24,7 @@ fun CalculatorScreen(modifier: Modifier = Modifier) {
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
         ) {
+            DisplayPanel("3", "2 + 1")
             ButtonPanel(
                 Modifier.padding(vertical = 8.dp)
             )

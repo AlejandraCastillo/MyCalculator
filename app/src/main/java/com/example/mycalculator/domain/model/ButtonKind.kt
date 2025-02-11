@@ -1,4 +1,4 @@
-package com.example.mycalculator
+package com.example.mycalculator.domain.model
 
 sealed class ButtonKind {
     object Number : ButtonKind() // Surface

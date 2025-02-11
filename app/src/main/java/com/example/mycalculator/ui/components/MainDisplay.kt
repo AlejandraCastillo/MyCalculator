@@ -1,24 +1,26 @@
-package com.example.mycalculator
+package com.example.mycalculator.ui.components
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SecondaryDisplay(
-    secondaryText: String,
+fun MainDisplay(
+    mainText: String,
     modifier: Modifier = Modifier
 ) {
     Text(
-        text = secondaryText,
+        text = mainText,
         style = TextStyle(
-            fontSize = 52.sp,
-            color = Color.LightGray,
+            fontSize = 68.sp
         ),
-        textAlign = TextAlign.End
+        minLines = 1,
+        maxLines = 1,
+        softWrap = false,
+        textAlign = TextAlign.End,
     )
 }
+

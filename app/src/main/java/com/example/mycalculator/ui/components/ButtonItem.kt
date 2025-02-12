@@ -1,4 +1,4 @@
-package com.example.mycalculator.ui.`components `
+package com.example.mycalculator.ui.components
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -12,16 +12,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mycalculator.data.ButtonKind
+import com.example.mycalculator.domain.model.ButtonKind
 
 @Composable
 fun ButtonItem(
     content: String,
     buttonKind: ButtonKind,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Button(
-        onClick = {},
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(
             containerColor =
             when (buttonKind) {
@@ -60,12 +61,3 @@ fun ButtonItem(
     }
 }
 
-@Preview
-@Composable
-private fun PrevCalculatorButton1() {
-    ButtonItem(
-        content = "AC",
-        buttonKind = ButtonKind.Action.AC,
-        modifier = Modifier.size(80.dp)
-    )
-}

@@ -9,11 +9,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mycalculator.data.buttonDetailsList
+import com.example.mycalculator.domain.model.buttonDetailsList
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid as LazyVerticalGrid1
 
 @Composable
-fun ButtonPanel(modifier: Modifier = Modifier) {
+fun ButtonPanel(
+    mainDisplayText: String,
+    secondaryDisplayText: String,
+    updateMainDisplay: (String) -> Unit,
+    updateSecondaryDisplay: (String) -> Unit,
+    modifier: Modifier = Modifier) {
     LazyVerticalGrid1(
         columns = GridCells.Fixed(4),
         contentPadding = PaddingValues(16.dp),
@@ -34,17 +39,19 @@ fun ButtonPanel(modifier: Modifier = Modifier) {
         ) { item ->
             ButtonItem(
                 buttonKind = item.buttonKind,
-                content = item.content
+                content = item.content,
+                onClick = {
+                    item.buttonKind.buttonAction.onClick(
+                        item.content,
+                        mainDisplayText,
+                        secondaryDisplayText,
+                        updateMainDisplay,
+                        updateSecondaryDisplay
+                    )
+                }
             )
         }
     }
 }
 
 
-@Preview
-@Composable
-private fun PrevButtonPanel() {
-    ButtonPanel(
-        modifier = Modifier
-    )
-}

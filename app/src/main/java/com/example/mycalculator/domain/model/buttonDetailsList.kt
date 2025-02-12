@@ -1,6 +1,4 @@
-package com.example.mycalculator.data
-
-import com.example.mycalculator.domain.model.ButtonKind
+package com.example.mycalculator.domain.model
 
 val buttonDetailsList: List<ButtonDetails> = listOf(
     ButtonDetails("AC", ButtonKind.Action.AC),

@@ -1,9 +1,12 @@
 package com.example.mycalculator.domain.model
 
-sealed class ButtonKind {
-    object Number : ButtonKind() // Surface
-    object Operation : ButtonKind() //Primary
-    sealed class Action : ButtonKind() {  //Secondary
+import com.example.mycalculator.ButtonOnClick
+import com.example.mycalculator.NumberButtonOnClick
+
+sealed class ButtonKind (val buttonAction: ButtonOnClick) {
+    object Number : ButtonKind(NumberButtonOnClick()) // Surface
+    object Operation : ButtonKind(NumberButtonOnClick()) //Primary
+    sealed class Action : ButtonKind(NumberButtonOnClick()) {  //Secondary
         object AC : Action()
         object Erase : Action()
         object Percent : Action()

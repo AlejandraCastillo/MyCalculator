@@ -1,4 +1,4 @@
-package com.example.mycalculator.`screens `
+package com.example.mycalculator.screens
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -6,6 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,6 +20,9 @@ import com.example.mycalculator.ui.components.DisplayPanel
 
 @Composable
 fun CalculatorScreen(modifier: Modifier = Modifier) {
+    var mainDisplayText by remember { mutableStateOf("") }
+    var secondaryDisplayText by remember { mutableStateOf("") }
+
 
     Box(modifier.fillMaxSize()){
         Column(
@@ -22,9 +30,13 @@ fun CalculatorScreen(modifier: Modifier = Modifier) {
                 .align(Alignment.BottomEnd)
                 .padding(16.dp)
         ) {
-            DisplayPanel("3", "2 + 1")
+            DisplayPanel(mainDisplayText, secondaryDisplayText)
             ButtonPanel(
-                Modifier.padding(vertical = 8.dp)
+                mainDisplayText = mainDisplayText,
+                secondaryDisplayText = secondaryDisplayText,
+                updateMainDisplay = { newText -> mainDisplayText = newText },
+                updateSecondaryDisplay = { newText -> secondaryDisplayText = newText },
+                modifier = Modifier.padding(vertical = 8.dp)
             )
         }
     }

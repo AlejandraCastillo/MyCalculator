@@ -8,7 +8,9 @@ class BasicMathProcessor : MathProcessor {
     var error: Boolean = false
 
     override fun addOperator(operator: Char) {
-        operators.add(operator)
+        if (operator == '+' || operator == '-'|| operator == 'X'|| operator == '/'){
+            operators.add(operator)
+        }
     }
 
     override fun addNumber(number: Double) {
@@ -16,6 +18,7 @@ class BasicMathProcessor : MathProcessor {
     }
 
     override fun clear() {
+        error = false
         operators.clear()
         numbers.clear()
     }

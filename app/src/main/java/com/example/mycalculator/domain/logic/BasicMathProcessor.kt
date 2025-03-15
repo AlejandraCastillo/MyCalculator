@@ -1,34 +1,46 @@
 package com.example.mycalculator
 
-import androidx.compose.runtime.mutableStateListOf
-
 class BasicMathProcessor : MathProcessor {
+
+    private val TAG = "BasicMathProcessor"
+
     val operators: MutableList<Char> = mutableListOf()
     val numbers: MutableList<Double> = mutableListOf()
-    var error: Boolean = false
+    private var _error: Boolean = false
+    val error: Boolean
+        get() = _error
 
     override fun addOperator(operator: Char) {
-        if (operator == '+' || operator == '-'|| operator == 'X'|| operator == '/'){
+        if (operator == '+' || operator == '-'|| operator == '*'|| operator == '/'){
             operators.add(operator)
         }
     }
 
     override fun addNumber(number: Double) {
+        if(_error) _error = false
         numbers.add(number)
     }
 
     override fun clear() {
-        error = false
+        _error = false
         operators.clear()
         numbers.clear()
     }
 
+    private fun itsAnError(): Double{
+        clear()
+        _error = true
+        return 0.0
+    }
+
     override fun evaluate(): Double {
-        do {
+        while(operators.any { it == '*' || it == '/' }){
             val index = operators
-                .indexOfFirst { it == 'X' || it == '/' }
-            when(operators[index]){
-                'X' -> {
+                .indexOfFirst { it == '*' || it == '/' }
+            val operator = operators[index]
+            operators.removeAt(index)
+            when(operator){
+                '*' -> {
                     val aux = numbers[index] * numbers[index + 1]
                     numbers[index] = aux
                     numbers.removeAt(index + 1)
@@ -36,16 +48,15 @@ class BasicMathProcessor : MathProcessor {
                 '/' -> {
                     if(numbers[index + 1] != 0.0){
                         val aux = numbers[index] / numbers[index + 1]
-                        numbers.removeAt(index)
                         numbers[index] = aux
+                        numbers.removeAt(index + 1)
                     }
                     else{
-                        error = true
-                        return 0.0
+                        return itsAnError()
                     }
                 }
             }
-        }while(index != -1)
+        }
 
         operators.forEachIndexed{ i, value ->
             if(value == '-'){
@@ -53,7 +64,12 @@ class BasicMathProcessor : MathProcessor {
             }
         }
 
-        return numbers.sum()
+        val result = numbers.sum()
+
+        clear()
+        addNumber(result)
+
+        return result
     }
 
 }
